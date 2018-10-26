@@ -49,7 +49,7 @@ const TabContainer = TabNavigator(
     }
   }
 );
-
+console.log('原首页进来。。。')
 const App = StackNavigator(
   {
     Splash: { screen: Splash },
