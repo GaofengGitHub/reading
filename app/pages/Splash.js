@@ -29,7 +29,7 @@ const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
 const splashImg = require('../img/splash.png');
 
-class Splash extends React.Component {
+class Splash extends React.Component { 
   static navigationOptions = {
     header: null
   };
@@ -57,11 +57,11 @@ class Splash extends React.Component {
     SplashScreen.hide();
     this.timer = setTimeout(() => {
       store.get('isInit').then((isInit) => {
-        if (!isInit) {
-          navigate('Category', { isFirst: true });
-        } else {
+        // if (!isInit) {
+          // navigate('Category', { isFirst: true });
+        // } else { 
           NavigationUtil.reset(this.props.navigation, 'Home');
-        }
+        // }
       });
     }, 1000);
   }
