@@ -22,6 +22,7 @@ import MainContainer from '../containers/MainContainer';
 import WebViewPage from '../pages/ItemDetail/WebViewPage';
 import Feedback from '../pages/Feedback/Feedback';
 import About from '../pages/About/About';
+import Serve from '../pages/Serve';
 
 const TabContainer = TabNavigator(
   {
@@ -53,8 +54,9 @@ console.log('原首页进来。。。')
 const App = StackNavigator(
   {
     Splash: { screen: Splash },
+    Serve: { screen: Serve },
     Category: {
-      screen: CategoryContainer,
+      screen: CategoryContainer, 
       navigationOptions: {
         headerLeft: null
       }

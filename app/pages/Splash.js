@@ -16,15 +16,15 @@
  *
  */
 import React from 'react';
-import { Dimensions, Animated } from 'react-native';
-import store from 'react-native-simple-store';
+import { Dimensions, Image ,View} from 'react-native';
+import store from 'react-native-simple-store'; 
 import { registerApp } from 'react-native-wechat';
 import AV from 'leancloud-storage';
 import SplashScreen from 'react-native-splash-screen';
 import NavigationUtil from '../utils/NavigationUtil';
 
 console.log("引导页进来。。。")
-
+ 
 const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
 const splashImg = require('../img/splash.png');
@@ -36,9 +36,9 @@ class Splash extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      bounceValue: new Animated.Value(1)
-    };
+    // this.state = {
+    //   bounceValue: new Animated.Value(1)
+    // };
     registerApp('wxb24c445773822c79');
     if (!AV.applicationId) {
       AV.init({
@@ -50,18 +50,18 @@ class Splash extends React.Component {
 
   componentDidMount() {
     const { navigate } = this.props.navigation;
-    Animated.timing(this.state.bounceValue, {
-      toValue: 1.2,
-      duration: 1000
-    }).start();
+    // Animated.timing(this.state.bounceValue, {
+    //   toValue: 1.2,
+    //   duration: 1000
+    // }).start();
     SplashScreen.hide();
     this.timer = setTimeout(() => {
       store.get('isInit').then((isInit) => {
-        // if (!isInit) {
-          // navigate('Category', { isFirst: true });
-        // } else { 
+        if (!isInit) { 
+          navigate('Serve', { isFirst: true });
+        } else { 
           NavigationUtil.reset(this.props.navigation, 'Home');
-        // }
+        }
       });
     }, 1000);
   }
@@ -72,14 +72,17 @@ class Splash extends React.Component {
 
   render() {
     return (
-      <Animated.Image
-        style={{
-          width: maxWidth,
-          height: maxHeight,
-          transform: [{ scale: this.state.bounceValue }]
-        }}
-        source={splashImg}
-      />
+      <View style={{width:"100%",height:"100%"}}>
+        <Image
+          style={{ 
+            width: null,
+            height: null,
+            // transform: [{ scale: this.state.bounceValue }]
+          }}
+          source={splashImg}
+        />
+      </View>
+      
     );
   }
 }
